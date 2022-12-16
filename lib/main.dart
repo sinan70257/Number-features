@@ -56,7 +56,7 @@ class _MyHomePageState extends State<MyHomePage> {
               style: TextStyle(
                   fontSize: 35,
                   fontWeight: FontWeight.w900,
-                  color: Color.fromARGB(255, 0, 97, 132)),
+                  color: Color.fromARGB(255, 0, 94, 128)),
               textAlign: TextAlign.center,
             ),
           ),
@@ -66,11 +66,19 @@ class _MyHomePageState extends State<MyHomePage> {
               controller: _nunberInput,
               keyboardType: TextInputType.number,
               decoration: InputDecoration(
-                  border: OutlineInputBorder(), hintText: "Enter a number"),
+                  disabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255))),
+                  enabledBorder: OutlineInputBorder(
+                      borderSide: BorderSide(
+                          color: Color.fromARGB(255, 255, 255, 255))),
+                  border: OutlineInputBorder(),
+                  hintText: "Enter a number"),
             ),
           ),
           ElevatedButton(
-            style: ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey),
+            style: ElevatedButton.styleFrom(
+                backgroundColor: Color.fromARGB(255, 255, 255, 255)),
             onPressed: () async {
               final num = _nunberInput.text;
               final result = await getNumberFact(number: num);
@@ -78,7 +86,10 @@ class _MyHomePageState extends State<MyHomePage> {
                 sample = result.text;
               });
             },
-            child: const Text("Get Result"),
+            child: const Text(
+              "Get Result",
+              style: TextStyle(color: Colors.blueGrey),
+            ),
           ),
         ],
       )),
