@@ -40,13 +40,26 @@ class MyHomePage extends StatefulWidget {
 
 class _MyHomePageState extends State<MyHomePage> {
   final _nunberInput = TextEditingController();
+  String? sample = " ";
   @override
   Widget build(BuildContext context) {
     return Scaffold(
+      backgroundColor: Colors.blueAccent,
       body: SafeArea(
           child: Column(
         mainAxisAlignment: MainAxisAlignment.center,
         children: [
+          Padding(
+            padding: const EdgeInsets.all(8.0),
+            child: Text(
+              "${"$sample"}",
+              style: TextStyle(
+                  fontSize: 35,
+                  fontWeight: FontWeight.w900,
+                  color: Color.fromARGB(255, 0, 97, 132)),
+              textAlign: TextAlign.center,
+            ),
+          ),
           Padding(
             padding: const EdgeInsets.all(8.0),
             child: TextFormField(
@@ -57,13 +70,16 @@ class _MyHomePageState extends State<MyHomePage> {
             ),
           ),
           ElevatedButton(
-            onPressed: () {
+            style: ElevatedButton.styleFrom(backgroundColor: Colors.blueGrey),
+            onPressed: () async {
               final num = _nunberInput.text;
-              getNumberFact(number: num);
+              final result = await getNumberFact(number: num);
+              setState(() {
+                sample = result.text;
+              });
             },
             child: const Text("Get Result"),
           ),
-          Text("")
         ],
       )),
     );
